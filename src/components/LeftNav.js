@@ -10,10 +10,12 @@ function LeftNav() {
   return (
     <div className="md:block w-[240px] overflow-auto h-full py-4 bg-black absolute md:relative z-10 translate-x-[-240] md:translate-x-0 transition-all">
       <div className="flex px-5 flex-col">
-        {categories.map((item) => {
+        {categories.map((item, index) => {
+          console.log(index);
           return (
             <>
               <LeftNavMenuItem
+                key={index}
                 text={item.type === "home" ? "Home" : item.name}
                 icon={item.icon}
                 action={() => {}}
