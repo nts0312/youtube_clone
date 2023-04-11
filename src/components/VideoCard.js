@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import VideoLength from "../shared/VideoLength";
 
 function VideoCard({ video }) {
   return (
@@ -10,6 +11,8 @@ function VideoCard({ video }) {
             className="h-full w-full object-cover"
             src={video?.thumbnails?.[0]?.url}
           />
+
+          {video?.lengthSeconds && <VideoLength time={video.lengthSeconds} />}
         </div>
       </div>
     </Link>

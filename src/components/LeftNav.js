@@ -2,10 +2,28 @@ import React, { useContext } from "react";
 import { Context } from "../context/contextApi";
 import LeftNavMenuItem from "./LeftNavMenuItem";
 import { categories } from "../utils/constants";
+import { useNavigate } from "react-router-dom";
 
 function LeftNav() {
   const { selectedCategory, setSelectedCategory, mobileMenu } =
     useContext(Context);
+
+  const navigate = useNavigate();
+  const clickHandler = (name, type) => {
+    switch (type) {
+      case "category":
+        return setSelectedCategory(name);
+
+      case "home":
+        return setSelectedCategory(name);
+
+      case "menu":
+        return false;
+
+      default:
+        break;
+    }
+  };
 
   return (
     <div className="md:block w-[240px] overflow-auto h-full py-4 bg-black absolute md:relative z-10 translate-x-[-240] md:translate-x-0 transition-all">
@@ -18,7 +36,10 @@ function LeftNav() {
                 key={index}
                 text={item.type === "home" ? "Home" : item.name}
                 icon={item.icon}
-                action={() => {}}
+                action={() => {
+                  clickHandler(item.name, item.type);
+                  navigate("/");
+                }}
                 className={`${
                   selectedCategory === item.name ? "bg-white/[0.15]" : ""
                 }`}
